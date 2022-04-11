@@ -1,0 +1,122 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome links -->
+    <script
+      src="https://kit.fontawesome.com/47e3ba482c.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Css link -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Event Registration</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <span class="fa-solid fa-calendar-check fa-2x title-icon"></span>
+        <h1>Book Appointment</h1>
+      </div>
+      <hr />
+      <form id="appointment">
+        <input
+          type="text"
+          name="name"
+          class="input-long"
+          placeholder="Enter Full Name"
+        /><br />
+        <input
+          type="tel"
+          name="phoneNumber"
+          class="input-long"
+          placeholder="Enter Mobile Number"
+        />
+        <br />
+        <input
+          type="email"
+          name="email"
+          class="input-long"
+          placeholder="Enter Email Address"
+        />
+        <br />
+        <input type="date" name="date" class="input-long" /><br />
+
+        <!-- Short Input segment -->
+        <div class="address-info">
+          <input
+            type="text"
+            name="area"
+            class="input-short"
+            placeholder="Enter Area"
+          />
+          <input
+            type="text"
+            name="city"
+            class="input-short"
+            placeholder="Enter City"
+          /><br />
+          <input
+            type="text"
+            name="state"
+            class="input-short"
+            placeholder="Enter State"
+          />
+          <input
+            type="text"
+            name="postalCode"
+            class="input-short"
+            placeholder="Enter Postal Code"
+          /><br />
+        </div>
+
+        <button id="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("appointment");
+      const submitButton = document.getElementById("submit");
+      submitButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        //Prepare form data
+        const formData = new FormData(form);
+        const formObject = {};
+
+        // Create a formObject property for each form data key/value pair
+        for (let data of formData.entries()) {
+          formObject[data[0]] = data[1];
+        }
+
+        //Add date validation, date must be after today
+        const date = new Date(formObject.date);
+        if (Date.now() < date) {
+          // Send form data to api endpoint
+          const response = await fetch("/appointment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formObject),
+          });
+
+          // Parse response to js object
+          const data = await response.json();
+          console.log(data);
+          window.location.assign(data.location);
+        } else {
+          alert(`Invalid date option ${date}`);
+        }
+      });
+    </script>
+  </body>
+</html>

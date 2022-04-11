@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+     <!-- Google Fonts -->
+
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+       rel="stylesheet"
+     />
+     <!-- FontAwesome links -->
+     <script
+       src="https://kit.fontawesome.com/47e3ba482c.js"
+       crossorigin="anonymous"
+     ></script>
+ 
+     <!-- Css link -->
+     <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <body>
+        <div class="container login">
+          <div class="title">
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2x"></i>
+            <h1>Admin Login</h1>
+          </div>
+          <hr />
+          <form id="login">
+            <label for="username">Username:</label><br>
+            <input
+              type="text"
+              name="username"
+              class="input-long"
+              placeholder="Enter username"
+            /><br />
+            <label for="password">Password:</label><br>
+            <input
+              type="password"
+              name="password"
+              class="input-long"
+              placeholder="Enter password"
+            />
+            <br />
+            <button id="submit">Login</button>
+          </form>
+        </div>
+        <script>
+            const form = document.getElementById('login')
+            const loginButton = document.getElementById('submit')
+            loginButton.addEventListener('click',async (e)=>{
+            e.preventDefault()
+                  //Prepare form data
+             const formData = new FormData(form);
+             const formObject = {};
+
+        // Create a formObject property for each form data key/value pair
+        for (let data of formData.entries()) {
+          formObject[data[0]] = data[1];
+        }
+        const response = await fetch('/admin/login',{
+            method:'POST',
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formObject)
+        })
+
+        const data = await response.json()
+        window.location.assign(data.location)
+            })
+        </script>
+  </body>
+</html>

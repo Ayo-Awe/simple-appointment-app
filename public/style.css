@@ -1,0 +1,107 @@
+body {
+  background-color: #103333;
+  display: flex;
+  align-items: center;
+}
+.container {
+  max-width: 400px;
+  min-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  background-color: #cfeeec;
+  padding: 30px;
+  border-radius: 12px;
+}
+.login {
+  min-width: 340px;
+}
+/* Title Section */
+.title {
+  width: 80%;
+  margin: auto;
+  text-align: left;
+  font-family: "Ubuntu";
+  color: #103333;
+}
+.title h1 {
+  display: inline;
+  margin-left: 10px;
+  font-size: 1.9rem;
+}
+
+/* Form section */
+input {
+  height: 2rem;
+  margin: 8px 0;
+  border: none;
+  border-radius: 3px;
+}
+input:focus {
+  outline: none;
+}
+.input-long {
+  width: 80%;
+}
+.address-info {
+  width: 80%;
+  margin: 8px auto;
+  padding: 0;
+}
+.input-short {
+  width: 49%;
+  margin: 8px 0;
+}
+button {
+  height: 40px;
+  width: 80%;
+  background-color: #103333;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Ubuntu";
+}
+
+button:hover {
+  background-color: #1e4242;
+  color: #fff;
+  border: 1px solid #103333;
+}
+
+.content {
+  text-align: center;
+  margin: 25% auto 0 auto;
+  color: #fff;
+  font-family: "Ubuntu";
+  width: 80%;
+}
+
+.success-icon {
+  color: #fff;
+}
+
+label {
+  text-align: left;
+  font-family: "Ubuntu";
+  color: #103333;
+}
+
+.table-container {
+  background-color: white;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 5px;
+  font-family: Ubuntu;
+}
+
+#download-file {
+  width: 100px;
+  height: 2rem;
+  font-size: 1rem;
+  margin: 5px 5px 5px 5px;
+  float: right;
+}
+
+.table-container-footer {
+  padding: 5px;
+}
